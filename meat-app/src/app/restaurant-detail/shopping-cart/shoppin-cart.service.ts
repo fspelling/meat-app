@@ -7,6 +7,7 @@ export class ShoppinCartService {
     constructor() { }
 
     clear() {
+        this.itens = [];
     }
 
     addItem(menuItem: MenuItem) {
@@ -19,7 +20,12 @@ export class ShoppinCartService {
     }
 
     removeItem(item: CartItem) {
-        this.itens.splice(this.itens.indexOf(item), 1);
+        let findCart = this.itens.find(cart => cart == item);
+
+        if (findCart.quantity > 1)
+            findCart.quantity = findCart.quantity - 1;
+        else
+            this.itens.splice(this.itens.indexOf(item), 1);
     }
 
     Total(): number {
