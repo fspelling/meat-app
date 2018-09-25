@@ -14,7 +14,7 @@ export class ShoppinCartService {
         let findItens = this.itens.find((item) => item.menuItem.id === menuItem.id);
 
         if (findItens)
-            findItens.quantity = findItens.quantity + 1;
+            this.increasyQty(findItens);
         else
             this.itens.push(new CartItem(menuItem));
     }
@@ -32,5 +32,15 @@ export class ShoppinCartService {
         return this.itens
             .map(item => item.value())
             .reduce((prev, value) => prev + value, 0);
+    }
+
+    increasyQty(item: CartItem) {
+        item.quantity = item.quantity + 1;
+    }
+
+    decreasyQty(item: CartItem) {
+        item.quantity = item.quantity - 1;
+        if(item.quantity == 0)
+            this.removeItem(item);
     }
 }
