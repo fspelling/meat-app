@@ -28,6 +28,10 @@ export class ShoppinCartService {
             this.itens.splice(this.itens.indexOf(item), 1);
     }
 
+    removeTotalItem(item: CartItem) {
+        this.itens.splice(this.itens.indexOf(item), 1);
+    }
+
     Total(): number {
         return this.itens
             .map(item => item.value())
@@ -40,7 +44,7 @@ export class ShoppinCartService {
 
     decreasyQty(item: CartItem) {
         item.quantity = item.quantity - 1;
-        if(item.quantity == 0)
+        if (item.quantity == 0)
             this.removeItem(item);
     }
 }

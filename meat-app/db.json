@@ -370,5 +370,27 @@
       "restaurantId": "tasty-treats"
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "address": "rua orville Derby, 224",
+      "number": "224",
+      "optionalAddress": "224",
+      "paymentOption": "CRE",
+      "orderItens": [
+        {
+          "quantity": 1,
+          "menuId": "cup"
+        },
+        {
+          "quantity": 1,
+          "menuId": "straw"
+        },
+        {
+          "quantity": 1,
+          "menuId": "cake"
+        }
+      ],
+      "id": 1
+    }
+  ]
 }

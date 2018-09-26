@@ -17,7 +17,7 @@
       <tr *ngFor="let item of itens">
         <td class="text-center">
           <a (click)="emitDecreasyQty(item)" class="btn btn-sm"><i class="fa fa-minus"></i></a>
-          {{item.quatity}}
+          {{item.quantity}}
           <a (click)="emitIncreasyQty(item)" class="btn btn-sm"><i class="fa fa-plus"></i></a>
         </td>
         <td>{{item.menuItem.name}}</td>
