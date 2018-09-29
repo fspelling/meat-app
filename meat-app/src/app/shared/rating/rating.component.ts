@@ -18,15 +18,15 @@ export class RatingComponent implements OnInit {
 
   setRate(rt: number) {
     this.rate = rt;
+    this.previosRate = undefined;
+    this.rated.emit(rt);
   }
 
   setTemp(rt: number) {
     if (this.previosRate == undefined)
-      this.previosRate = rt;
+      this.previosRate = this.rate;
 
     this.rate = rt;
-    this.previosRate = undefined;
-    this.rated.emit(rt);
   }
 
   clearTemp() {
