@@ -33,7 +33,7 @@ export class OrderComponent implements OnInit {
       number: this.formBuilder.control('', [Validators.required, Validators.pattern(this.paternNumber)]),
       optionalAddress: this.formBuilder.control(''),
       paymentOption: this.formBuilder.control('', [Validators.required])
-    }, { Validator: OrderComponent.equalsTo });
+    }, { validator: OrderComponent.equalsTo });
   }
 
   static equalsTo(group: AbstractControl): { [key: string]: boolean } {
