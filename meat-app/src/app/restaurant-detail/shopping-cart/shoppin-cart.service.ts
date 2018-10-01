@@ -1,10 +1,13 @@
 import { CartItem } from './cart-item.model';
 import { MenuItem } from '../menu-item/menu-item.model';
+import { Injectable } from '@angular/core';
+import { NotificationService } from '../../shared/messages/snackbar/notification.service';
 
+@Injectable()
 export class ShoppinCartService {
     itens: CartItem[] = [];
 
-    constructor() { }
+    constructor(private notificationService: NotificationService) { }
 
     clear() {
         this.itens = [];
@@ -17,6 +20,8 @@ export class ShoppinCartService {
             this.increasyQty(findItens);
         else
             this.itens.push(new CartItem(menuItem));
+
+        this.notificationService.notify(`Voce adicionou item: ${menuItem.name}`);
     }
 
     removeItem(item: CartItem) {
@@ -26,6 +31,8 @@ export class ShoppinCartService {
             findCart.quantity = findCart.quantity - 1;
         else
             this.itens.splice(this.itens.indexOf(item), 1);
+
+        this.notificationService.notify(`Voce removeu item: ${item.menuItem.name}`);
     }
 
     removeTotalItem(item: CartItem) {
