@@ -35,11 +35,8 @@ export class OrderService {
     }
 
     checkOrder(order: Order): Observable<string> {
-        const headers = new HttpHeaders()
-        headers.append('Content-Type', 'application/json');
-
-        return this.http.post<string>(`${MEAT_API}/orders`, JSON.stringify(order), { headers: headers })
-            .map<any, string>(response => response.id);
+        return this.http.post<Order>(`${MEAT_API}/orders`, order)
+            .map(order => order.id);
     }
 
     clear() {

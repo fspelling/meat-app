@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
 import { RouterModule, PreloadAllModules } from '@angular/router';
-import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { ROUTES } from './app.routes';
@@ -17,7 +15,9 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { LocationStrategy, HashLocationStrategy } from '../../node_modules/@angular/common';
+import { AppComponent } from './app.component';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,6 @@ import { LocationStrategy, HashLocationStrategy } from '../../node_modules/@angu
   ],
   imports: [
     SharedModule.forRoot(),
-    LocationStrategy,
     BrowserModule,
     HttpClientModule,
     RouterModule,
