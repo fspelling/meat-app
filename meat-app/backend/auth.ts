@@ -1,13 +1,14 @@
 import { Request, Response } from 'express';
 import { User, users } from './users';
 import * as jwt from 'jsonwebtoken';
+import { apiPassword } from './api-config';
 
 export const handleAuthentication = (req: Request, res: Response) => {
     const user = req.body;
 
     if (isValid(user)) {
         const dbUser: User = users[user.email];
-        const token = jwt.sign({ sub: dbUser.email, iss: 'meat-api' }, 'meat-api-password');
+        const token = jwt.sign({ sub: dbUser.email, iss: 'meat-api' }, apiPassword);
 
         res.json({ name: dbUser.name, email: dbUser.email, accessToken: token });
     } else {
@@ -20,5 +21,6 @@ function isValid(user: User): boolean {
         return false;
 
     const dbUser = users[user.email];
+
     return (dbUser != undefined && dbUser.matches(user));
 }

@@ -11,6 +11,7 @@ export class InputComponent implements OnInit, AfterContentInit {
   @Input() validObrigatorio: boolean; 
   @Input() messageError: string;
   @Input() label: string;
+  @Input() showMessage: boolean = true;
 
   @ContentChild(NgModel) model: NgModel;
   @ContentChild(FormControlName) control: FormControlName;

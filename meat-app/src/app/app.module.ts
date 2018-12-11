@@ -18,6 +18,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AppComponent } from './app.component';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LoginComponent } from './security/login/login.component';
+import { UserDetailComponent } from './header/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     MenuItemComponent,
     ReviewsComponent,
     OrderSummaryComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LoginComponent,
+    UserDetailComponent
   ],
   imports: [
     SharedModule.forRoot(),

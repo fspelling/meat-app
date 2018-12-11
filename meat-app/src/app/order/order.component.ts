@@ -5,6 +5,7 @@ import { CartItem } from '../restaurant-detail/shopping-cart/cart-item.model';
 import { Order, OrderItem } from './order.model';
 import { Router } from '../../../node_modules/@angular/router';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '../../../node_modules/@angular/forms';
+import 'rxjs/operator/do';
 
 @Component({
   selector: 'mt-order',
@@ -21,6 +22,7 @@ export class OrderComponent implements OnInit {
   ];
 
   delivery: number = 2;
+  orderID: string;
 
   constructor(private orderService: OrderService, private router: Router, private formBuilder: FormBuilder) { }
 
@@ -49,6 +51,10 @@ export class OrderComponent implements OnInit {
     return undefined;
   }
 
+  isOrderCompleted(): boolean {
+    return this.orderID !== undefined;
+  }
+
   itensValues(): number {
     return this.orderService.itensValues();
   }
@@ -71,10 +77,11 @@ export class OrderComponent implements OnInit {
 
   checkOrder(order: Order) {
     order.orderItens = this.cartItens().map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id));
-    this.orderService.checkOrder(order).subscribe((orderId: string) => {
-      console.log('compra concluida: ', orderId);
-      this.orderService.clear();
-      this.router.navigate(['/order-summary']);
-    });
+    this.orderService.checkOrder(order)
+      .do((orderId: string) => this.orderID = orderId)
+      .subscribe((orderId: string) => {
+        this.orderService.clear();
+        this.router.navigate(['/order-summary']);
+      });
   }
 }
